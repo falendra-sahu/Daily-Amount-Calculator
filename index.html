@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Amount Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 400px;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button.clear {
+            background-color: #f44336;
+            color: white;
+        }
+        button.clear:hover {
+            background-color: #e53935;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #e0ffe0;
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Amount Calculator</h1>
+        <div class="form-group">
+            <label for="totalAmount">Total Amount (₹):</label>
+            <input type="number" id="totalAmount" placeholder="Enter total amount" required>
+        </div>
+        <div class="button-group">
+            <button class="clear" onclick="clearInput()">Clear</button>
+        </div>
+        <div class="result" id="result">Daily Amount: ₹0.00</div>
+    </div>
+
+    <footer>
+        Powered by <a href="#">Falendra Sahu ❤️</a>
+    </footer>
+
+    <script>
+        function calculateDailyAmount() {
+            const totalAmount = parseFloat(document.getElementById('totalAmount').value);
+            const divisor = 30; // Fixed divisor
+
+            if (isNaN(totalAmount) || totalAmount <= 0) {
+                document.getElementById('result').innerText = 'Daily Amount: ₹0.00';
+                return;
+            }
+
+            const dailyAmount = totalAmount / divisor;
+            document.getElementById('result').innerText = `Daily Amount: ₹${dailyAmount.toFixed(2)}`;
+        }
+
+        function clearInput() {
+            document.getElementById('totalAmount').value = '';
+            document.getElementById('result').innerText = 'Daily Amount: ₹0.00';
+        }
+
+        // Live update
+        document.getElementById('totalAmount').addEventListener('input', calculateDailyAmount);
+    </script>
+</body>
+</html>
